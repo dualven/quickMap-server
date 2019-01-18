@@ -57,4 +57,14 @@ public class WebLoginController extends BaseController {
         webLoginService.createUser(param);
         return successRender("成功");
     }
+    @RequestMapping(value = "/createUser2")
+    public String createUser2() {
+        CreateUserParam param = new CreateUserParam();
+        param.setLoginName("dxw");
+        param.setPassword("123456");
+        param.setUserName("dualven");
+        param.setResetPasswordAnswer("1231");
+        webLoginService.createUser(param);
+        return successRender("成功createUser2");
+    }
 }
