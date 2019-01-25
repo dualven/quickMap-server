@@ -74,3 +74,6 @@ dataService/src/main/resources/mybatis.properties //mybatis 模块配置
 dataService/src/main/resources/redis.properties //redis 模块配置
 ```
 具体可以看配置里的注释
+
+
+1. 可以扩展在此对文件列表与搜索的页面支持
