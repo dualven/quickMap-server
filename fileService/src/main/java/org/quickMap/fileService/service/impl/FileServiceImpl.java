@@ -143,9 +143,9 @@ public class FileServiceImpl implements IFileService {
      */
     @Override
     public List<FileInfoData> pagesearch(String name,Long before,Long after,String suffix,Integer author,Integer ss,Integer ee) {
-        if((!StringUtils.hasText(name)) && (!StringUtils.hasText(suffix)) && before == null && after == null && author == null){
-            return Collections.emptyList();
-        }
+        // if((!StringUtils.hasText(name)) && (!StringUtils.hasText(suffix)) && before == null && after == null && author == null){
+        //     return Collections.emptyList();
+        // }
         suffix = suffix != null ? suffix.replace(".","") : null;
         List<FileInfo> f = fileInfoMapper.queryFileInfo(FileInfo.QueryBuild().timestampBetWeen(after,before)
         .suffix(suffix).filename(name).author(author).isdel(FileServiceConstant.DelStatus.common).start(ss).end(ee).build());
