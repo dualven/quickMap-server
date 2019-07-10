@@ -138,7 +138,22 @@ public class FileServiceImpl implements IFileService {
         }
         return solveFileInfoData(f);
     }
-
+    /**
+     * [{"id":"fengjing05","title":"\u98ce\u666f","name":"fengjing05","img_num":10,"img_src":"https:\/\/img-cdn-qiniu.dcloud.net.cn\/tuku\/img\/fengjing05.jpg"},
+     */
+    @Override
+    public List<FileInfoData> pagesearch(String name,Long before,Long after,String suffix,Integer author,Integer ss,Integer ee) {
+        if((!StringUtils.hasText(name)) && (!StringUtils.hasText(suffix)) && before == null && after == null && author == null){
+            return Collections.emptyList();
+        }
+        suffix = suffix != null ? suffix.replace(".","") : null;
+        List<FileInfo> f = fileInfoMapper.queryFileInfo(FileInfo.QueryBuild().timestampBetWeen(after,before)
+        .suffix(suffix).filename(name).author(author).isdel(FileServiceConstant.DelStatus.common).start(ss).end(ee).build());
+        if (f.size() == 0 && StringUtils.hasText(name)) {
+            sug.deleteSugKey(name);
+        }
+        return solveFileInfoData(f);
+    }
     @Override
     public void initFileNameSearchText(boolean rebuild) {
         List<String> fileNames = fileInfoMapper.queryFileNameSet();

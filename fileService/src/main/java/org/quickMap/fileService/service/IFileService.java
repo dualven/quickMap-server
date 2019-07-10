@@ -96,6 +96,17 @@ public interface IFileService {
      * @throws Exception
      */
     List<FileInfoData> search(String name,Long before,Long after,String suffix,Integer author)throws Exception;
+    /**
+     * 分页查询
+     * @param name
+     * @param before
+     * @param after
+     * @param suffix
+     * @param author
+     * @return
+     * @throws Exception
+     */
+    List<FileInfoData> pagesearch(String name,Long before,Long after,String suffix,Integer author,Integer ss,Integer ee)throws Exception;
 
     /**
      * 初始化自动补全文本

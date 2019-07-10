@@ -33,6 +33,10 @@ public class FileSearchController extends BaseController {
     public String search(@RequestParam(value = "fileName",required = false) String fileName,@RequestParam(value = "before",required = false)Long before,@RequestParam(value = "after",required = false)Long after,@RequestParam(value = "suffix",required = false)String suffix)throws Exception{
         return jsonRender(fileService.search(fileName,before,after,suffix,null));
     }
+    @RequestMapping("/pageSearch")
+    public String pageSearch(@RequestParam(value = "fileName",required = false) String fileName,@RequestParam(value = "start",required = false)Integer start,@RequestParam(value = "end",required = false)Integer end)throws Exception{
+        return jsonRender(fileService.pagesearch(fileName,null,null,null,null,start,end));
+    }
 
     /**
      * 根据前缀获取完成建议

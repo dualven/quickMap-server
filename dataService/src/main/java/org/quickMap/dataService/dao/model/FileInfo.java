@@ -223,7 +223,13 @@ public class FileInfo implements Serializable {
         public Long getTimestampSt(){return this.timestampSt;}
 
         public Long getTimestampEd(){return this.timestampEd;}
+        private int start;
 
+        private int end;
+
+        public int getStart(){return this.start;}
+
+        public int  getEnd(){return this.end;}
         private List<Integer> authorList;
 
         public List<Integer> getAuthorList(){return this.authorList;}
@@ -280,7 +286,14 @@ public class FileInfo implements Serializable {
             this.fuzzyId = fuzzyId;
             return this;
         }
-
+        public QueryBuilder start (int ss){
+            this.start = ss;
+            return this;
+        }
+        public QueryBuilder end (int ee){
+            this.end = ee;
+            return this;
+        }
         public QueryBuilder fuzzyId (String ... fuzzyId){
             this.fuzzyId = solveNullList(fuzzyId);
             return this;
@@ -766,6 +779,14 @@ public class FileInfo implements Serializable {
         public Long getTimestampSt(){return this.timestampSt;}
 
         public Long getTimestampEd(){return this.timestampEd;}
+
+        private int start;
+
+        private int end;
+
+        public int getStart(){return this.start;}
+
+        public int  getEnd(){return this.end;}
 
         private List<Integer> authorList;
 
