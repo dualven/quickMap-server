@@ -4,6 +4,7 @@ import org.quickMap.base.BaseController;
 import org.quickMap.fileService.service.IFilePrefixSuggestionService;
 import org.quickMap.fileService.service.IFileService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,7 +38,13 @@ public class FileSearchController extends BaseController {
     public String pageSearch(@RequestParam(value = "fileName",required = false) String fileName,@RequestParam(value = "start",required = false)Integer start,@RequestParam(value = "end",required = false)Integer end)throws Exception{
         return jsonRender(fileService.pagesearch(fileName,null,null,null,null,start,end));
     }
-
+    @CrossOrigin
+    @RequestMapping("/beautySearch")
+    public String beautySearch(@RequestParam(value = "fileName",required = false) String fileName,@RequestParam(value = "page",required = false)Integer page,@RequestParam(value = "per_page",required = false)Integer per_page)throws Exception{
+        int start = page * per_page;
+        int end = per_page;
+        return jsonRender(fileService.pagesearch(fileName,null,null,null,null,start,end));
+    }
     /**
      * 根据前缀获取完成建议
      *
