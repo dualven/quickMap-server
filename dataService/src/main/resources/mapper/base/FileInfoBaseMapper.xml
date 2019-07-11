@@ -488,7 +488,7 @@
             </if>
         </trim>
          <if test = "(_parameter instanceof org.quickMap.dataService.dao.model.FileInfo$QueryBuilder) == true">
-            <if test ="start!=null and start > 0 and end !=null and end > 0 ">
+            <if test ="start!=null  and end !=null and end > 0 ">
                         limit #{start},#{end}
             </if>
          </if>

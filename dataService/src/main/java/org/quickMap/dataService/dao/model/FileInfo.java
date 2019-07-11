@@ -61,6 +61,9 @@ public class FileInfo implements Serializable {
     * isNullAble:1
     */
     private String thumbImagePath;
+    public int start;
+
+    public int end;
 
     /**
     * 
@@ -114,6 +117,8 @@ public class FileInfo implements Serializable {
                 "timestamp='" + timestamp + '\'' +
                 "author='" + author + '\'' +
                 "isdel='" + isdel + '\'' +
+                "start='" + start + '\'' +
+                "end='" + end + '\'' +
                 "thumbImagePath='" + thumbImagePath + '\'' +
                 "suffix='" + suffix + '\'' +
             '}';
@@ -223,10 +228,7 @@ public class FileInfo implements Serializable {
         public Long getTimestampSt(){return this.timestampSt;}
 
         public Long getTimestampEd(){return this.timestampEd;}
-        private int start;
-
-        private int end;
-
+      
         public int getStart(){return this.start;}
 
         public int  getEnd(){return this.end;}
