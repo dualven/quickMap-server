@@ -12,7 +12,6 @@
     <groupId>org.quickMap</groupId>
     <artifactId>quickMap-parent</artifactId>
     <version>1.0.0.RELEASE</version>
-
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>

@@ -95,6 +95,9 @@ public class BeautyFile implements Serializable {
     public String getTag(){return this.tag;}
     public void setTag(String tag){this.tag = tag;}
 
+    public void setStart(int ss){this.start = ss;}
+    public void setEnd(int ee){this.end = ee;}
+
     public String getImage_src(){return this.image_src;}
 
     public void setTimestamp(Long timestamp){this.timestamp = timestamp;}
@@ -168,6 +171,14 @@ public class BeautyFile implements Serializable {
         }
         public Builder tag(String tag){
             this.obj.setTag(tag);
+            return this;
+        }
+        public Builder start(int start){
+            this.obj.setStart(start);
+            return this;
+        }
+        public Builder end(int end){
+            this.obj.setEnd(end);
             return this;
         }
         public Builder timestamp(Long timestamp){

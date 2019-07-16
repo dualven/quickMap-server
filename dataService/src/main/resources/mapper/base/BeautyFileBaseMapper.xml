@@ -307,7 +307,7 @@
         <result property="id" column="id"/>
         <result property="filename" column="filename"/>
         <result property="size" column="size"/>
-        <result property="image_src" column="path"/>
+        <result property="image_src" column="image_src"/>
         <result property="group" column="group"/>
         <result property="tag" column="tag"/>
         <result property="timestamp" column="timestamp"/>
@@ -356,11 +356,10 @@
             <if test="suffix != null and suffix!=''">
                 `suffix` = #{suffix} and
             </if>
-     
-            <if test ="start!=null  and end !=null and end > 0 ">
+        </trim>
+        <if test ="start!=null  and end !=null and end > 0 ">
                         limit #{start},#{end}
-            </if>
-       </trim>
+        </if>
     </select>
 
 
@@ -382,7 +381,7 @@
 
 
 
-    
+
 
 
 </mapper>

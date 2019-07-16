@@ -114,7 +114,7 @@ public class BeautyServiceImpl implements IBeautyFile {
         // }
         suffix = suffix != null ? suffix.replace(".","") : null;
         List<BeautyFile> f = fileInfoMapper.queryBeautyFile(BeautyFile.Build()
-        .suffix(suffix).filename(name).author(author).isdel(FileServiceConstant.DelStatus.common).group(group).tag(tag).build());
+        .suffix(suffix).filename(name).author(author).isdel(FileServiceConstant.DelStatus.common).start(ss).end(ee).group(group).tag(tag).build());
         if (f.size() == 0 && StringUtils.hasText(name)) {
             sug.deleteSugKey(name);
         }
