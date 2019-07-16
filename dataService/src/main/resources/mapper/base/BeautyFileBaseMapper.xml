@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.quickMap.dataService.dao.base.BeautyFileBaseMapper">
+
+
+    <insert id="insertBeautyFile">
+        INSERT INTO `BeautyFile`
+        (
+        <trim suffixOverrides=",">
+            <if test="id!=null">
+                        `id`,
+            </if>
+            <if test="filename!=null">
+                        `filename`,
+            </if>
+            <if test="size!=null">
+                        `size`,
+            </if>
+            <if test="image_src!=null">
+                        `image_src`,
+            </if>
+            <if test="group!=null">
+                        `group`,
+            </if>
+            <if test="tag!=null">
+                        `tag`,
+            </if>
+            <if test="timestamp!=null">
+                        `timestamp`,
+            </if>
+            <if test="author!=null">
+                        `author`,
+            </if>
+            <if test="isdel!=null">
+                        `isdel`,
+            </if>
+            <if test="thumbImagePath!=null">
+                        `thumbImagePath`,
+            </if>
+            <if test="suffix!=null">
+                        `suffix`,
+            </if>
+        </trim>
+        )
+        VALUES
+        (
+        <trim suffixOverrides=",">
+            <if test="id!=null">
+                    #{id},
+            </if>
+            <if test="filename!=null">
+                    #{filename},
+            </if>
+            <if test="size!=null">
+                    #{size},
+            </if>
+            <if test="image_src!=null">
+                       #{image_src},
+            </if>
+            <if test="group!=null">
+                         #{group},
+            </if>
+            <if test="tag!=null">
+                         #{tag},
+            </if>
+            <if test="timestamp!=null">
+                    #{timestamp},
+            </if>
+            <if test="author!=null">
+                    #{author},
+            </if>
+            <if test="isdel!=null">
+                    #{isdel},
+            </if>
+            <if test="thumbImagePath!=null">
+                    #{thumbImagePath},
+            </if>
+            <if test="suffix!=null">
+                    #{suffix},
+            </if>
+        </trim>
+        )
+    </insert>
+
+
+
+
+    <update id="updateBeautyFile">
+        UPDATE `BeautyFile`
+        SET
+        <trim suffixOverrides=",">
+            <if test="filename != null and filename!=''">
+                `filename` = #{filename},
+            </if>
+            <if test="size != null">
+                `size` = #{size},
+            </if>
+            <if test="path != null and path!=''">
+                `path` = #{path},
+            </if>
+            <if test="timestamp != null">
+                `timestamp` = #{timestamp},
+            </if>
+            <if test="author != null">
+                `author` = #{author},
+            </if>
+            <if test="isdel != null">
+                `isdel` = #{isdel},
+            </if>
+            <if test="thumbImagePath != null and thumbImagePath!=''">
+                `thumbImagePath` = #{thumbImagePath},
+            </if>
+            <if test="suffix != null and suffix!=''">
+                `suffix` = #{suffix},
+            </if>
+        </trim>
+        WHERE
+        <trim suffixOverrides="and">
+                `id` = #{id} and
+        </trim>
+    </update>
+
+    <update id="update">
+        UPDATE `BeautyFile`
+        SET
+        <trim suffixOverrides=",">
+            <if test="set.filename != null and set.filename!=''">
+            `filename` = #{set.filename},
+            </if>
+            <if test="set.size != null">
+            `size` = #{set.size},
+            </if>
+            <if test="set.path != null and set.path!=''">
+            `path` = #{set.path},
+            </if>
+            <if test="set.timestamp != null">
+            `timestamp` = #{set.timestamp},
+            </if>
+            <if test="set.author != null">
+            `author` = #{set.author},
+            </if>
+            <if test="set.isdel != null">
+            `isdel` = #{set.isdel},
+            </if>
+            <if test="set.thumbImagePath != null and set.thumbImagePath!=''">
+            `thumbImagePath` = #{set.thumbImagePath},
+            </if>
+            <if test="set.suffix != null and set.suffix!=''">
+            `suffix` = #{set.suffix},
+            </if>
+        </trim>
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="where.idList != null">
+                    `id` in
+                <foreach collection="where.idList" close=")" open="(" separator="," item="item">
+                        #{item}
+                </foreach> and
+            </if>
+            <if test ="where.fuzzyId!=null and where.fuzzyId.size()>0">
+                (
+                <foreach collection="where.fuzzyId" separator="or" item="item">
+                    `Id` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyId!=null and where.rightFuzzyId.size()>0">
+                (
+                <foreach collection="where.rightFuzzyId" separator="or" item="item">
+                    `Id` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test="where.filenameList != null">
+                    `filename` in
+                <foreach collection="where.filenameList" close=")" open="(" separator="," item="item">
+                        #{item}
+                </foreach> and
+            </if>
+            <if test ="where.fuzzyFilename!=null and where.fuzzyFilename.size()>0">
+                (
+                <foreach collection="where.fuzzyFilename" separator="or" item="item">
+                    `Filename` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyFilename!=null and where.rightFuzzyFilename.size()>0">
+                (
+                <foreach collection="where.rightFuzzyFilename" separator="or" item="item">
+                    `Filename` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test="where.sizeList != null">
+                    `size` in
+                <foreach collection="where.sizeList" close=")" open="(" separator="," item="item">
+                        #{item}
+                </foreach> and
+            </if>
+            <if test="where.sizeSt !=null">
+                `size` >= #{where.sizeSt} and
+            </if>
+            <if test="where.sizeEd!=null">
+                `size` &lt;= #{where.sizeEd} and
+            </if>
+            <if test="where.pathList != null">
+                    `path` in
+                <foreach collection="where.pathList" close=")" open="(" separator="," item="item">
+                        #{item}
+                </foreach> and
+            </if>
+            <if test ="where.fuzzyPath!=null and where.fuzzyPath.size()>0">
+                (
+                <foreach collection="where.fuzzyPath" separator="or" item="item">
+                    `Path` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyPath!=null and where.rightFuzzyPath.size()>0">
+                (
+                <foreach collection="where.rightFuzzyPath" separator="or" item="item">
+                    `Path` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test="where.timestampList != null">
+                    `timestamp` in
+                <foreach collection="where.timestampList" close=")" open="(" separator="," item="item">
+                        #{item}
+                </foreach> and
+            </if>
+            <if test="where.timestampSt !=null">
+                `timestamp` >= #{where.timestampSt} and
+            </if>
+            <if test="where.timestampEd!=null">
+                `timestamp` &lt;= #{where.timestampEd} and
+            </if>
+            <if test="where.authorList != null">
+                    `author` in
+                <foreach collection="where.authorList" close=")" open="(" separator="," item="item">
+                        #{item}
+                </foreach> and
+            </if>
+            <if test="where.authorSt !=null">
+                `author` >= #{where.authorSt} and
+            </if>
+            <if test="where.authorEd!=null">
+                `author` &lt;= #{where.authorEd} and
+            </if>
+            <if test="where.isdelList != null">
+                    `isdel` in
+                <foreach collection="where.isdelList" close=")" open="(" separator="," item="item">
+                        #{item}
+                </foreach> and
+            </if>
+            <if test="where.isdelSt !=null">
+                `isdel` >= #{where.isdelSt} and
+            </if>
+            <if test="where.isdelEd!=null">
+                `isdel` &lt;= #{where.isdelEd} and
+            </if>
+            <if test="where.thumbImagePathList != null">
+                    `thumbImagePath` in
+                <foreach collection="where.thumbImagePathList" close=")" open="(" separator="," item="item">
+                        #{item}
+                </foreach> and
+            </if>
+            <if test ="where.fuzzyThumbImagePath!=null and where.fuzzyThumbImagePath.size()>0">
+                (
+                <foreach collection="where.fuzzyThumbImagePath" separator="or" item="item">
+                    `ThumbImagePath` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzyThumbImagePath!=null and where.rightFuzzyThumbImagePath.size()>0">
+                (
+                <foreach collection="where.rightFuzzyThumbImagePath" separator="or" item="item">
+                    `ThumbImagePath` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test="where.suffixList != null">
+                    `suffix` in
+                <foreach collection="where.suffixList" close=")" open="(" separator="," item="item">
+                        #{item}
+                </foreach> and
+            </if>
+            <if test ="where.fuzzySuffix!=null and where.fuzzySuffix.size()>0">
+                (
+                <foreach collection="where.fuzzySuffix" separator="or" item="item">
+                    `Suffix` like concat('%',#{item},'%')
+                </foreach>
+                ) and
+            </if>
+            <if test ="where.rightFuzzySuffix!=null and where.rightFuzzySuffix.size()>0">
+                (
+                <foreach collection="where.rightFuzzySuffix" separator="or" item="item">
+                    `Suffix` like concat(#{item},'%')
+                </foreach>
+                ) and
+            </if>
+        </trim>
+    </update>
+
+
+    <resultMap type="org.quickMap.dataService.dao.model.BeautyFile" id="BeautyFileMap">
+        <result property="id" column="id"/>
+        <result property="filename" column="filename"/>
+        <result property="size" column="size"/>
+        <result property="image_src" column="path"/>
+        <result property="group" column="group"/>
+        <result property="tag" column="tag"/>
+        <result property="timestamp" column="timestamp"/>
+        <result property="author" column="author"/>
+        <result property="isdel" column="isdel"/>
+        <result property="thumbImagePath" column="thumbImagePath"/>
+        <result property="suffix" column="suffix"/>
+    </resultMap>
+
+
+    <select id="queryBeautyFile" resultMap="BeautyFileMap">
+        select
+        <include refid="allResult"></include>
+        from  `BeautyFile`
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="id != null and id!=''">
+                `id` = #{id} and
+            </if>
+            <if test="filename != null and filename!=''">
+                `filename` = #{filename} and
+            </if>
+            <if test="size != null">
+                `size` = #{size} and
+            </if>
+            <if test="image_src != null and path!=''">
+                `path` = #{image_src} and
+            </if>
+            <if test="group != null and group!=''">
+                `path` = #{group} and
+            </if>
+            <if test="tag != null and tag!=''">
+                `path` = #{tag} and
+            </if>
+            <if test="timestamp != null">
+                `timestamp` = #{timestamp} and
+            </if>
+            <if test="author != null">
+                `author` = #{author} and
+            </if>
+            <if test="isdel != null">
+                `isdel` = #{isdel} and
+            </if>
+            <if test="thumbImagePath != null and thumbImagePath!=''">
+                `thumbImagePath` = #{thumbImagePath} and
+            </if>
+            <if test="suffix != null and suffix!=''">
+                `suffix` = #{suffix} and
+            </if>
+     
+            <if test ="start!=null  and end !=null and end > 0 ">
+                        limit #{start},#{end}
+            </if>
+       </trim>
+    </select>
+
+
+    <sql id="allResult">
+        <trim suffixOverrides=",">
+        `id`,
+        `filename`,
+        `size`,
+        `image_src`,
+        `group`,
+        `tag`,
+        `timestamp`,
+        `author`,
+        `isdel`,
+        `thumbImagePath`,
+        `suffix`,
+        </trim>
+    </sql>
+
+
+
+    
+
+
+</mapper>

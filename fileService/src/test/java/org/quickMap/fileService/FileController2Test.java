@@ -9,7 +9,9 @@ import static org.junit.Assert.*;
 import static org.hamcrest.Matchers.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.quickMap.fileService.model.BeautyInfoData;
 import org.quickMap.fileService.model.FileInfoData;
+import org.quickMap.fileService.service.IBeautyFile;
 import org.quickMap.fileService.service.IFileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,6 +22,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class FileController2Test {
   @Autowired
   protected IFileService fileService;
+  @Autowired
+  protected IBeautyFile beautyService;
 
   @Test
   public void testuploadLocal() throws FileNotFoundException {
@@ -53,6 +57,27 @@ public class FileController2Test {
   @Test
   public void testpageSearch() throws Exception {
     List<FileInfoData> data = fileService.pagesearch("20190531114159_Camera 01_抓拍原图.jpg", null, null, null, null,0,1);
+      assertThat(data.get(0).getFilename(),equalToIgnoringCase("20190531114159_Camera 01_抓拍原图.jpg"));
+    
+  }
+
+  @Test
+  public void testBeautyUploadd() throws Exception {
+    File file = new File("C:\\Users\\zhupengfei\\Downloads\\20190531114159_Camera 01_抓拍原图.jpg");
+    FileInputStream input;
+    try {
+      input = new FileInputStream(file);
+      FileInfoData data = beautyService.uploadFile(input, file.getName(), file.length(), true);
+      assertThat(data.getFilename(), equalToIgnoringCase("20190531114159_Camera 01_抓拍原图.jpg"));
+    } catch (FileNotFoundException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+  }
+
+  @Test
+  public void testbeautypageSearch() throws Exception {
+    List<BeautyInfoData> data = beautyService.pagesearch("20190531114159_Camera 01_抓拍原图.jpg", null, null, null, null,0,1);
       assertThat(data.get(0).getFilename(),equalToIgnoringCase("20190531114159_Camera 01_抓拍原图.jpg"));
     
   }
