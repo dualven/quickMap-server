@@ -47,6 +47,22 @@ public class FileControllerTest {
    * [{"author":0,"delParam":"3C8C8CC47C103AB7722CAA16DD22759775E787A61627A91CFBE565CAD8EF68E3C8582CBA62AEBB9A","downloadUrl":"http://x.dualven.cn:9080/null?attname=20190531114159_Camera 01_抓拍原图.jpg","filename":"20190531114159_Camera 01_抓拍原图.jpg","size":199757,"thumbImagePath":"http://x.dualven.cn:9080/group1/M00/00/05/CjwCr10tL3SAKfiyAAMMTUiLU_8133_80x60.jpg","timestamp":1563242356311}]
    * @throws Exception
    */
+  // @Test
+  // public void testUploadBeauty() throws Exception {
+  //   JSONObject jsonObject = new JSONObject();
+  //       jsonObject.put("fileName", "20190531114159_Camera 01_抓拍原图.jpg");
+  //       jsonObject.put("page", 0);
+  //       jsonObject.put("per_page", 5);
+  //       jsonObject.put("group", "1");
+  //       jsonObject.put("tag", "girl");
+  //       System.out.println("kanaka ");
+  //       this.mockMvc.perform(get("/file/uploadBeauty?fileName="+ jsonObject.get("fileName")
+  //       + "&page=0&per_page=5&group='1'&tag='girl'"
+  //       )
+  //       )
+  //      .andDo(print()).andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
+  //       // .andExpect(jsonPath("$")[0].fileName.value("20190531114159_Camera 01_抓拍原图.jpg"));
+  // }
   @Test
   public void testsearchController() throws Exception {
     JSONObject jsonObject = new JSONObject();

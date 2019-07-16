@@ -8,6 +8,7 @@ import com.github.tobato.fastdfs.exception.FdfsServerException;
 
 import org.apache.commons.io.monitor.FileEntry;
 import org.quickMap.base.BaseController;
+import org.quickMap.fileService.service.IBeautyFile;
 import org.quickMap.fileService.service.IFileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +20,8 @@ public class FileController extends BaseController {
 
     @Autowired
     protected IFileService fileService;
+    @Autowired
+    protected IBeautyFile beautyService;
    /**
      * 上传文件
      *
@@ -45,7 +48,12 @@ public class FileController extends BaseController {
     public String upload(@RequestParam("file") MultipartFile file,@RequestParam(value = "thumbImage",required = false,defaultValue= "false")boolean thumbImage) throws Exception {
         return jsonRender(fileService.uploadFile(file.getInputStream(), file.getOriginalFilename(), file.getSize(),thumbImage));
     }
-
+    @RequestMapping("/uploadBeauty")
+    public String uploadBeauty(@RequestParam("file") MultipartFile file,@RequestParam(value = "thumbImage",required = false,defaultValue= "false")boolean thumbImage
+    ,@RequestParam(value = "group",required = false,defaultValue= "false")String group
+    ,@RequestParam(value = "tag",required = false,defaultValue= "false")String tag) throws Exception {
+        return jsonRender(beautyService.uploadFile(file.getInputStream(), file.getOriginalFilename(), file.getSize(),0,thumbImage,group,tag));
+    }
     /**
      * 上传base64
      *
