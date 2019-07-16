@@ -228,6 +228,8 @@ public class BeautyServiceImpl implements IBeautyFile {
         data.setDelParam(getDelParam(info.getId()));
         data.setFilename(info.getFilename());
         data.setimage_src(info.getImage_src());
+        data.setgroup(info.getGroup());
+        data.settag(info.getTag());
         data.setDownloadUrl(getDownloadUrl(info.getFilename(), info.getImage_src()));
         data.setThumbImagePath(info.getThumbImagePath() != null ? fdfsConstant.getDownloadServer() + info.getThumbImagePath() : null);
         return data;

@@ -77,8 +77,8 @@ public class FileController2Test {
 
   @Test
   public void testbeautypageSearch() throws Exception {
-    List<BeautyInfoData> data = beautyService.pagesearch("20190531114159_Camera 01_抓拍原图.jpg", null, null, null, null,0,2,"1",null);
-      assertThat(data.get(0).getFilename(),equalToIgnoringCase("20190531114159_Camera 01_抓拍原图.jpg"));
+    List<BeautyInfoData> data = beautyService.pagesearch("270.jpg", null, null, null, null,0,2,null,null);
+      assertThat(data.get(0).getFilename(),equalToIgnoringCase("270.jpg"));
     
       assertThat(data.size(),equalTo(1));
   }
