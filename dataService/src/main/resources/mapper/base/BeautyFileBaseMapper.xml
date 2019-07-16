@@ -333,13 +333,13 @@
                 `size` = #{size} and
             </if>
             <if test="image_src != null and path!=''">
-                `path` = #{image_src} and
+                `image_src` = #{image_src} and
             </if>
             <if test="group != null and group!=''">
-                `path` = #{group} and
+                `group` = #{group} and
             </if>
             <if test="tag != null and tag!=''">
-                `path` = #{tag} and
+                `tag` = #{tag} and
             </if>
             <if test="timestamp != null">
                 `timestamp` = #{timestamp} and

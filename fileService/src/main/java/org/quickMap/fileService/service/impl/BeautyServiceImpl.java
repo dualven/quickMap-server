@@ -57,11 +57,11 @@ public class BeautyServiceImpl implements IBeautyFile {
 
     @Override
     public BeautyInfoData uploadFile(InputStream file, String uploadFileName, long fileLength, boolean genThumbImage) throws Exception {
-        return uploadFile(file, uploadFileName, fileLength, 0, genThumbImage);
+        return uploadFile(file, uploadFileName, fileLength, 0, genThumbImage,null ,null);
     }
 
     @Override
-    public BeautyInfoData uploadFile(InputStream file, String uploadFileName, long fileLength, Integer author, boolean genThumbImage) throws Exception {
+    public BeautyInfoData uploadFile(InputStream file, String uploadFileName, long fileLength, Integer author, boolean genThumbImage,String group,String tag) throws Exception {
         Assert.hasText(uploadFileName, "文件名不能为空");
         Assert.notNull(file, "文件不能为空");
 
@@ -79,6 +79,8 @@ public class BeautyServiceImpl implements IBeautyFile {
         fileInfo.setFilename(uploadFileName);//文件名
         fileInfo.setSuffix(FileOperatorUtil.getSuffix(uploadFileName));//后缀
         fileInfo.setThumbImagePath(genThumbImage ? thumbImageCfg.getThumbImagePath(storePath.getFullPath()) : null);//缩略图地址
+        fileInfo.setGroup(group);
+        fileInfo.setTag(tag);
             sug.addSugKey(metaData, uploadFileName);
 
         fileInfoMapper.insertBeautyFile(fileInfo);
@@ -106,13 +108,13 @@ public class BeautyServiceImpl implements IBeautyFile {
      * [{"id":"fengjing05","title":"\u98ce\u666f","name":"fengjing05","img_num":10,"img_src":"https:\/\/img-cdn-qiniu.dcloud.net.cn\/tuku\/img\/fengjing05.jpg"},
      */
     @Override
-    public List<BeautyInfoData> pagesearch(String name,Long before,Long after,String suffix,Integer author,Integer ss,Integer ee) {
+    public List<BeautyInfoData> pagesearch(String name,Long before,Long after,String suffix,Integer author,Integer ss,Integer ee,String group,String tag) {
         // if((!StringUtils.hasText(name)) && (!StringUtils.hasText(suffix)) && before == null && after == null && author == null){
         //     return Collections.emptyList();
         // }
         suffix = suffix != null ? suffix.replace(".","") : null;
         List<BeautyFile> f = fileInfoMapper.queryBeautyFile(BeautyFile.Build()
-        .suffix(suffix).filename(name).author(author).isdel(FileServiceConstant.DelStatus.common).build());
+        .suffix(suffix).filename(name).author(author).isdel(FileServiceConstant.DelStatus.common).group(group).tag(tag).build());
         if (f.size() == 0 && StringUtils.hasText(name)) {
             sug.deleteSugKey(name);
         }

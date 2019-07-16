@@ -67,7 +67,7 @@ public class FileController2Test {
     FileInputStream input;
     try {
       input = new FileInputStream(file);
-      FileInfoData data = beautyService.uploadFile(input, file.getName(), file.length(), true);
+      FileInfoData data = beautyService.uploadFile(input, file.getName(), file.length(),0, true,"1","girl");
       assertThat(data.getFilename(), equalToIgnoringCase("20190531114159_Camera 01_抓拍原图.jpg"));
     } catch (FileNotFoundException e) {
       // TODO Auto-generated catch block
@@ -77,8 +77,9 @@ public class FileController2Test {
 
   @Test
   public void testbeautypageSearch() throws Exception {
-    List<BeautyInfoData> data = beautyService.pagesearch("20190531114159_Camera 01_抓拍原图.jpg", null, null, null, null,0,1);
+    List<BeautyInfoData> data = beautyService.pagesearch("20190531114159_Camera 01_抓拍原图.jpg", null, null, null, null,0,2,"1",null);
       assertThat(data.get(0).getFilename(),equalToIgnoringCase("20190531114159_Camera 01_抓拍原图.jpg"));
     
+      assertThat(data.size(),equalTo(1));
   }
 }

@@ -36,7 +36,7 @@ public interface IBeautyFile {
      * @return
      * @throws Exception
      */
-    FileInfoData uploadFile(InputStream file, String uploadFileName, long fileLength, Integer author,boolean genThumbImage) throws Exception;
+    FileInfoData uploadFile(InputStream file, String uploadFileName, long fileLength, Integer author,boolean genThumbImage,String group,String tag) throws Exception;
 
    
     /**
@@ -69,7 +69,7 @@ public interface IBeautyFile {
      * @return
      * @throws Exception
      */
-    List<BeautyInfoData> pagesearch(String name,Long before,Long after,String suffix,Integer author,Integer ss,Integer ee)throws Exception;
+    List<BeautyInfoData> pagesearch(String name,Long before,Long after,String suffix,Integer author,Integer ss,Integer ee,String group,String tag)throws Exception;
 
 
 }
