@@ -2,9 +2,9 @@ package org.quickMap.fileService.model;
 
 public class BeautyInfoData extends FileInfoData {
 
-    private String image_src;
-    private String group;
-    private String tag;
+    public String image_src;
+    public String group;
+    public String tag;
 
     public String getimage_src() {
         return image_src;

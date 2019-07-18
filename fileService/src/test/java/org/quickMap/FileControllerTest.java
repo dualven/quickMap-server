@@ -5,13 +5,17 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.List;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.serializer.SerializerFeature;
+
 import org.springframework.http.MediaType;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.Matchers.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.quickMap.fileService.model.BeautyInfoData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -27,7 +31,17 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 public class FileControllerTest {
   @Autowired
   private MockMvc mockMvc;
-
+  @Test
+  public  void testJSON(){
+    BeautyInfoData info = new BeautyInfoData();
+    info.setAuthor(0);
+    info.setimage_src("image_src");
+    info.setgroup("group");
+    info.settag("tag");
+    info.setDownloadUrl("downloadUrl");
+    String str = JSON.toJSONString(info);
+    System.out.println(str);
+  }
   // @Test
   // public void testuploadLocal() throws Exception {
   //   JSONObject jsonObject = new JSONObject();
