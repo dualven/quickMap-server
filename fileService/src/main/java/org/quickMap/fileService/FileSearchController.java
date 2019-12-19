@@ -50,11 +50,11 @@ public class FileSearchController extends BaseController {
     }
     @CrossOrigin
     @RequestMapping("/beautySearchEx")
-    public String beautySearchEx(@RequestParam(value = "fileName",required = false) String fileName,@RequestParam(value = "page",required = false)Integer page,@RequestParam(value = "per_page",required = false)Integer per_page,
+    public String beautySearchEx(@RequestParam(value = "fileName",required = false) String fileName,@RequestParam(value = "author",required = false,default="0")Integer author,@RequestParam(value = "page",required = false)Integer page,@RequestParam(value = "per_page",required = false)Integer per_page,
     @RequestParam(value = "group",required = false)String group,@RequestParam(value = "tag",required = false)String tag)throws Exception{
         int start = page * per_page;
         int end = per_page;
-        return jsonRender(beautyService.pagesearch(fileName,null,null,null,null,start,end,group,tag));
+        return jsonRender(beautyService.pagesearch(fileName,null,null,null,author,start,end,group,tag));
     }
     /**
      * 根据前缀获取完成建议
