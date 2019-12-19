@@ -25,55 +25,55 @@ public class FileController2Test {
   @Autowired
   protected IBeautyFile beautyService;
 
-  @Test
-  public void testuploadLocal() throws FileNotFoundException {
-    File file = new File("C:\\Users\\zhupengfei\\Downloads\\20190531114159_Camera 01_抓拍原图.jpg");
-    FileInputStream input = new FileInputStream(file);
-    assertThat(file.getName(), equalToIgnoringCase("20190531114159_Camera 01_抓拍原图.jpg"));
-    System.out.println(file.getTotalSpace());
-  }
+  // @Test
+  // public void testuploadLocal() throws FileNotFoundException {
+  //   File file = new File("C:\\Users\\zhupengfei\\Downloads\\20190531114159_Camera 01_抓拍原图.jpg");
+  //   FileInputStream input = new FileInputStream(file);
+  //   assertThat(file.getName(), equalToIgnoringCase("20190531114159_Camera 01_抓拍原图.jpg"));
+  //   System.out.println(file.getTotalSpace());
+  // }
 
-  @Test
-  public void testuploadlocal() throws Exception {
-    File file = new File("C:\\Users\\zhupengfei\\Downloads\\20190531114159_Camera 01_抓拍原图.jpg");
-    FileInputStream input;
-    try {
-      input = new FileInputStream(file);
-      FileInfoData data = fileService.uploadFile(input, file.getName(), file.length(), true);
-      assertThat(data.getFilename(), equalToIgnoringCase("20190531114159_Camera 01_抓拍原图.jpg"));
-    } catch (FileNotFoundException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
+  // @Test
+  // public void testuploadlocal() throws Exception {
+  //   File file = new File("C:\\Users\\zhupengfei\\Downloads\\20190531114159_Camera 01_抓拍原图.jpg");
+  //   FileInputStream input;
+  //   try {
+  //     input = new FileInputStream(file);
+  //     FileInfoData data = fileService.uploadFile(input, file.getName(), file.length(), true);
+  //     assertThat(data.getFilename(), equalToIgnoringCase("20190531114159_Camera 01_抓拍原图.jpg"));
+  //   } catch (FileNotFoundException e) {
+  //     // TODO Auto-generated catch block
+  //     e.printStackTrace();
+  //   }
 
-  }
+  // }
 
-  @Test
-  public void testSearch() throws Exception {
-    List<FileInfoData> data = fileService.search("20190531114159_Camera 01_抓拍原图.jpg", null, null, null, null);
-      assertThat(data.get(0).getFilename(),equalToIgnoringCase("20190531114159_Camera 01_抓拍原图.jpg"));
+  // @Test
+  // public void testSearch() throws Exception {
+  //   List<FileInfoData> data = fileService.search("20190531114159_Camera 01_抓拍原图.jpg", null, null, null, null);
+  //     assertThat(data.get(0).getFilename(),equalToIgnoringCase("20190531114159_Camera 01_抓拍原图.jpg"));
     
-  }
-  @Test
-  public void testpageSearch() throws Exception {
-    List<FileInfoData> data = fileService.pagesearch("20190531114159_Camera 01_抓拍原图.jpg", null, null, null, null,0,1);
-      assertThat(data.get(0).getFilename(),equalToIgnoringCase("20190531114159_Camera 01_抓拍原图.jpg"));
+  // }
+  // @Test
+  // public void testpageSearch() throws Exception {
+  //   List<FileInfoData> data = fileService.pagesearch("20190531114159_Camera 01_抓拍原图.jpg", null, null, null, null,0,1);
+  //     assertThat(data.get(0).getFilename(),equalToIgnoringCase("20190531114159_Camera 01_抓拍原图.jpg"));
     
-  }
+  // }
 
-  @Test
-  public void testBeautyUploadd() throws Exception {
-    File file = new File("C:\\Users\\zhupengfei\\Downloads\\20190531114159_Camera 01_抓拍原图.jpg");
-    FileInputStream input;
-    try {
-      input = new FileInputStream(file);
-      FileInfoData data = beautyService.uploadFile(input, file.getName(), file.length(),0, true,"1","girl");
-      assertThat(data.getFilename(), equalToIgnoringCase("20190531114159_Camera 01_抓拍原图.jpg"));
-    } catch (FileNotFoundException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
-  }
+  // @Test
+  // public void testBeautyUploadd() throws Exception {
+  //   File file = new File("C:\\Users\\zhupengfei\\Downloads\\20190531114159_Camera 01_抓拍原图.jpg");
+  //   FileInputStream input;
+  //   try {
+  //     input = new FileInputStream(file);
+  //     FileInfoData data = beautyService.uploadFile(input, file.getName(), file.length(),0, true,"1","girl");
+  //     assertThat(data.getFilename(), equalToIgnoringCase("20190531114159_Camera 01_抓拍原图.jpg"));
+  //   } catch (FileNotFoundException e) {
+  //     // TODO Auto-generated catch block
+  //     e.printStackTrace();
+  //   }
+  // }
 
   @Test
   public void testbeautypageSearch() throws Exception {
