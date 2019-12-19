@@ -50,9 +50,10 @@ public class FileController extends BaseController {
     }
     @RequestMapping("/uploadBeauty")
     public String uploadBeauty(@RequestParam("file") MultipartFile file,@RequestParam(value = "thumbImage",required = false,defaultValue= "false")boolean thumbImage
+    ,@RequestParam(value = "author",required = false,defaultValue= "0")Integer author
     ,@RequestParam(value = "group",required = false,defaultValue= "false")String group
     ,@RequestParam(value = "tag",required = false,defaultValue= "false")String tag) throws Exception {
-        return jsonRender(beautyService.uploadFile(file.getInputStream(), file.getOriginalFilename(), file.getSize(),0,thumbImage,group,tag));
+        return jsonRender(beautyService.uploadFile(file.getInputStream(), file.getOriginalFilename(), file.getSize(),author,thumbImage,group,tag));
     }
     /**
      * 上传base64
