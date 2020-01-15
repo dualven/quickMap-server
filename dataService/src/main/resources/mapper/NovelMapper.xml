@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.quickMap.dataService.dao.NovelMapper">
+
+        <resultMap type="org.quickMap.dataService.dao.model.Novel" id="NovelMap">
+                <result property="novel_ID" column="novel_ID"/>
+                <result property="novel_Url" column="novel_Url"/>
+                <result property="novel_Author" column="novel_Author"/>
+                <result property="novel_Name" column="novel_Name"/>
+                <result property="novel_CoverURL" column="novel_CoverURL"/>
+                <result property="novel_Intro" column="novel_Intro"/>
+                <result property="novel_Isfinished" column="novel_Isfinished"/>
+                <result property="novel_Wordscount" column="novel_Wordscount"/>
+                <result property="novel_LatestUpdateTime" column="novel_LatestUpdateTime"/>
+                <result property="novel_Type" column="novel_Type"/>
+        </resultMap>
+        <resultMap type="org.quickMap.dataService.dao.model.Chapter" id="ChapterlMap">
+                <result property="novel_ID" column="novel_ID"/>
+                <result property="chapter_ID" column="chapter_ID"/>
+                <result property="chapter_Url" column="chapter_Url"/>
+                <result property="chapter_Content" column="chapter_Content"/>
+                <result property="chapter_Title" column="chapter_Title"/>
+        </resultMap>
+        <select id="getNovels" resultMap="NovelMap">
+          SELECT * FROM novels 
+        </select>
+        <select id="getChaptersByNovel" resultMap="ChapterlMap">
+          SELECT * FROM chapters 
+                <trim prefix="where" suffixOverrides="and | or">
+                        <if test="novel_ID != null and novel_ID!=''">
+                `novel_ID` = #{novel_ID} and
+                        </if>
+                </trim>
+        order by chapter_ID asc
+        </select>
+</mapper>
